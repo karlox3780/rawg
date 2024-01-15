@@ -2,9 +2,9 @@ import './HomePage.css';
 
 const HomePage = () => {
     return (
-        <main>
-
-        </main>
+        <div className='w-full'>
+            <p className='text-white'>List</p>
+        </div>
     )
 }
 
