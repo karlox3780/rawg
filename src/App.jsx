@@ -3,15 +3,22 @@ import { Route, Routes } from 'react-router-dom';
 import HomePage from './pages/HomePage/HomePage';
 import Navbar from './components/Navbar/Navbar';
 import DiscoverSidebar from './components/DiscoverSidebar/DiscoverSidebar';
+import { useState } from 'react';
 
 function App() {
+  const [search, setSearch] = useState('');
+  const filterGames = (event) => {
+    const { value } = event.target;
+    setSearch(value);
+  }
+
   return (
     <div className="App">
-      <Navbar />
+      <Navbar filterGames={filterGames} />
       <main className='w-full flex sticky top-0 px-[40px]'>
         <DiscoverSidebar />
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<HomePage search={search} />} />
         </Routes>
       </main>
     </div>

@@ -3,14 +3,14 @@ import { useState, useEffect } from 'react';
 import GameSearch from '../../services/GameSearch.service';
 import GameList from '../../components/GameList/GameList';
 
-const HomePage = () => {
+const HomePage = ({ search }) => {
     const [games, setGames] = useState([]);
 
     useEffect(() => {
-        GameSearch.getAllGames().then((games) => {
+        GameSearch.getSearchGames(search).then((games) => {
             setGames(games.results);
         })
-    }, []);
+    }, [search]);
 
     return (
         <div className='w-full'>
