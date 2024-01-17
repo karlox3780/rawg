@@ -9,6 +9,11 @@ class GameSearch extends InitAxios {
             .then((response) => response.data)
             .catch({ error: "error" })
     }
+    getSearchGames(gameName) {
+        return this.axios.get("&search=" + gameName)
+            .then((response) => response.data)
+            .catch({ error: "error" })
+    }
 
 }
 
