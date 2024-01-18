@@ -9,6 +9,11 @@ class GameSearch extends InitAxios {
             .then((response) => response.data)
             .catch({ error: "error" })
     }
+    getGamebyId(id) {
+        return this.axios.get(`${id}`)
+            .then((response) => response.data)
+            .catch({ error: "error" });
+    }
 }
 
 export default new GameSearch();
