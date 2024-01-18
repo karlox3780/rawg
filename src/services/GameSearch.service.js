@@ -1,12 +1,12 @@
-import InitAxios from './InitAxios.service';
+import axios from "axios";
 
-class GameSearch extends InitAxios {
+class GameSearch {
     constructor() {
-        super("games");
+        this.baseUrl = `${process.env.REACT_APP_BASE_API_URL}games?key=${process.env.REACT_APP_API_KEY}`;
     }
+
     getSearchGames(gameName) {
-        console.log(gameName)
-        return this.axios.get(gameName.length > 0 && `&search=${gameName}`)
+        return axios.get(gameName.length > 0 ? `${this.baseUrl}&search=${gameName}` : this.baseUrl)
             .then((response) => response.data)
             .catch({ error: "error" })
     }
