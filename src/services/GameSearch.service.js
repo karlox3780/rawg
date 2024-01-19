@@ -5,12 +5,12 @@ class GameSearch extends InitAxios {
         super("games");
     }
     getSearchGames(gameName) {
-        return this.axios.get('', { params: { search: gameName } })
+        return this.axios.get('', { params: { key: process.env.REACT_APP_API_KEY, search: gameName } })
             .then((response) => response.data)
             .catch({ error: "error" })
     }
     getGamebyId(id) {
-        return this.axios.get(`${id}`)
+        return this.axios.get(`${id}`, { params: { key: process.env.REACT_APP_API_KEY } })
             .then((response) => response.data)
             .catch({ error: "error" });
     }
