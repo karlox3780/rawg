@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './GameCard.css';
 
 const GameCard = ({ game }) => {
@@ -8,7 +9,9 @@ const GameCard = ({ game }) => {
                 src={game.background_image}
                 alt={game.name} />
             <div className='p-3 flex flex-col gap-5'>
-                <span className='text-3xl font-semibold text-balance'>{game.name}</span>
+                <Link to={`/game/` + game.id} >
+                    <span className='text-3xl font-semibold text-balance'>{game.name}</span>
+                </Link>
                 <div className='flex-col gap-5 hidden group-hover:flex'>
                     <div className='flex justify-between'>
                         <span>Release Date:</span>

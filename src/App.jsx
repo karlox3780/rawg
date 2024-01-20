@@ -1,9 +1,10 @@
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
+import { useState } from 'react';
 import HomePage from './pages/HomePage/HomePage';
 import Navbar from './components/Navbar/Navbar';
 import DiscoverSidebar from './components/DiscoverSidebar/DiscoverSidebar';
-import { useState } from 'react';
+import GameDetail from './pages/GameDetail/GameDetail';
 
 function App() {
   const [search, setSearch] = useState('');
@@ -19,6 +20,7 @@ function App() {
         <DiscoverSidebar />
         <Routes>
           <Route path="/" element={<HomePage search={search} />} />
+          <Route path="/game/:id" element={<GameDetail />} />
         </Routes>
       </main>
     </div>

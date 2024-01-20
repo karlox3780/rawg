@@ -1,0 +1,11 @@
+.container-image {
+    position: absolute;
+    top: -88px;
+    left: 0;
+    width: 100vw;
+    height: 54.4vh;
+    background-color: transparent !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    z-index: -1;
+}

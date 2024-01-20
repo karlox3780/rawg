@@ -2,7 +2,7 @@ import './Navbar.css';
 
 const Navbar = ({ filterGames }) => {
     return (
-        <header className='w-full flex gap-5 py-[24px] px-[40px]'>
+        <header className='relative w-full flex gap-5 bg-transparent z-10 py-[24px] px-[40px]'>
             <h1 className='text-3xl text-white'>RAWG</h1>
             <input
                 type='text'

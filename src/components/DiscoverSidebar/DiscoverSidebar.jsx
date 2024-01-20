@@ -3,7 +3,7 @@ import './DiscoverSidebar.css';
 
 const DiscoverSidebar = () => {
     return (
-        <nav className='text-white text-left w-[200px] mr-[20px] mt-[40px]'>
+        <nav className='z-0 text-white text-left w-[200px] mr-[20px] mt-[40px]'>
             <ul>
                 <li>
                     <Link to="/games">Games</Link>
