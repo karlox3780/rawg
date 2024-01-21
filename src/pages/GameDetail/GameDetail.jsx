@@ -23,9 +23,12 @@ const GameDetail = () => {
                         background: `linear-gradient(rgba(15, 15, 15, 0), rgb(21, 21, 21)), linear-gradient(rgba(21, 21, 21, 0.8), rgba(21, 21, 21, 0.5)),url(${game.background_image})`
                     }}>
                     </div>
-                    <span className='text-white'>
+                    <h1 className='text-white'>
                         {game.name}
-                    </span>
+                    </h1>
+                    <p className='text-white'>
+                        {game.description}
+                    </p>
                 </div>
             }
         </>
