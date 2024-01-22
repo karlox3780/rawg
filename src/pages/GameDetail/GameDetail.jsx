@@ -1,7 +1,8 @@
 import './GameDetail.css';
 import { useEffect, useState } from 'react';
-import GameSearchService from '../../services/GameSearch.service';
 import { useParams } from 'react-router-dom';
+import parse from "html-react-parser";
+import GameSearchService from '../../services/GameSearch.service';
 
 const GameDetail = () => {
     const [game, setGame] = useState([]);
@@ -26,9 +27,9 @@ const GameDetail = () => {
                     <h1 className='text-white'>
                         {game.name}
                     </h1>
-                    <p className='text-white'>
-                        {game.description}
-                    </p>
+                    <div className='text-white text-left'>
+                        {parse(String(game.description))}
+                    </div>
                 </div>
             }
         </>
