@@ -16,7 +16,7 @@ function App() {
   return (
     <div className="App">
       <Navbar filterGames={filterGames} />
-      <main className='w-full flex px-[40px]'>
+      <main className='w-full flex items-start px-[40px]'>
         <DiscoverSidebar />
         <Routes>
           <Route path="/" element={<HomePage search={search} />} />

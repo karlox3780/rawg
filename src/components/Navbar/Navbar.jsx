@@ -4,7 +4,7 @@ import './Navbar.css';
 const Navbar = ({ filterGames }) => {
     return (
         <header className='relative flex items-center gap-5 bg-transparent z-10 py-[24px] px-[40px]'>
-            <h1 className='text-3xl block font-bold text-white'><Link to="/">RAWG</Link></h1>
+            <h1 className='text-2xl block font-bold text-white'><Link to="/">RAWG</Link></h1>
             <input
                 type='text'
                 placeholder="Search ..."
