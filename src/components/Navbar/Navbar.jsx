@@ -12,12 +12,12 @@ const Navbar = ({ filterGames }) => {
                         </path>
                     </svg>
                 </div>
-                <div class="absolute gap-1 inset-y-0 end-0 flex items-center pe-5 pointer-events-none text-sm text-gray-500">
-                    <div class="border border-gray-500 px-1.5 py-0.5">
+                <div className="absolute gap-1 inset-y-0 end-0 flex items-center pe-5 pointer-events-none text-sm text-gray-500">
+                    <div className="border border-gray-500 px-1.5 py-0.5">
                         <code>alt</code>
                     </div>
                     <span>+</span>
-                    <div class="border border-gray-500 px-1.5 py-0.5">
+                    <div className="border border-gray-500 px-1.5 py-0.5">
                         <code>enter</code>
                     </div>
                 </div>
