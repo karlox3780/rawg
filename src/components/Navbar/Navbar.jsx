@@ -28,7 +28,12 @@ const Navbar = ({ filterGames }) => {
                     onChange={filterGames}
                 ></input>
             </div>
-            <div className='dotted-label'></div>
+            <div className="flex text-white gap-5 items-center whitespace-nowrap">
+                <Link className="text-sm font-semibold hover:underline hover:underline-offset-8" href="/rawg-angular/auth">LOG IN</Link>
+                <Link to="https://rawg.io/apidocs" target="_blank" className="text-sm font-semibold hover:underline hover:underline-offset-8">API</Link>
+
+                <div className='dotted-label'></div>
+            </div>
         </header>
     )
 }
