@@ -2,14 +2,16 @@ import './HomePage.css';
 import { useState, useEffect } from 'react';
 import GameSearch from '../../services/GameSearch.service';
 import GameList from '../../components/GameList/GameList';
+import Spinner from '../../components/Spinner/Spinner';
 
 const HomePage = ({ search }) => {
+    const [loading, setLoading] = useState(true);
     const [games, setGames] = useState([]);
     const [order, setOrder] = useState(null);
     const [genres, setGenres] = useState(null);
 
     const handleOrder = (event) => {
-        console.log(event.target.name)
+        setLoading(true);
         switch (event.target.name) {
             case "orderby":
                 setOrder(event.target.value);
@@ -17,12 +19,22 @@ const HomePage = ({ search }) => {
             case "genres":
                 setGenres(event.target.value);
                 break;
+            default:
+                break;
         }
     }
     useEffect(() => {
-        GameSearch.getSearchGames(search, order).then((games) => {
-            setGames(games.results);
-        })
+        GameSearch
+            .getSearchGames(search, order)
+            .then((games) => {
+                setGames(games.results);
+            })
+            .catch((err) => {
+                console.error(err.response.data.errorMessage);
+            })
+            .finally(() => {
+                setLoading(false);
+            })
     }, [search, order]);
 
     return (
@@ -50,7 +62,7 @@ const HomePage = ({ search }) => {
                 </div>
             </div>
             {
-                <GameList games={games} />
+                loading ? <Spinner></Spinner> : <GameList games={games} />
             }
         </div>
     )
