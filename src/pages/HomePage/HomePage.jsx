@@ -1,6 +1,7 @@
 import './HomePage.css';
 import { useState, useEffect } from 'react';
 import GameSearch from '../../services/GameSearch.service';
+import GenresService from '../../services/Genres.service';
 import GameList from '../../components/GameList/GameList';
 import Spinner from '../../components/Spinner/Spinner';
 
@@ -8,6 +9,7 @@ const HomePage = ({ search }) => {
     const [loading, setLoading] = useState(true);
     const [games, setGames] = useState([]);
     const [order, setOrder] = useState(null);
+    const [genre, setGenre] = useState(null);
     const [genres, setGenres] = useState(null);
 
     const handleOrder = (event) => {
@@ -17,7 +19,7 @@ const HomePage = ({ search }) => {
                 setOrder(event.target.value);
                 break;
             case "genres":
-                setGenres(event.target.value);
+                setGenre(event.target.value);
                 break;
             default:
                 break;
@@ -25,7 +27,7 @@ const HomePage = ({ search }) => {
     }
     useEffect(() => {
         GameSearch
-            .getSearchGames(search, order)
+            .getSearchGames(search, order, genre)
             .then((games) => {
                 setGames(games.results);
             })
@@ -34,8 +36,20 @@ const HomePage = ({ search }) => {
             })
             .finally(() => {
                 setLoading(false);
+            });
+
+        GenresService
+            .getGenres()
+            .then((genres) => {
+                setGenres(genres.results)
             })
-    }, [search, order]);
+            .catch((err) => {
+                console.error(err.response.data.errorMessage);
+            })
+            .finally(() => {
+                setLoading(false);
+            });
+    }, [search, order, genre]);
 
     return (
         <div className='w-full flex flex-col gap-10'>
@@ -53,11 +67,11 @@ const HomePage = ({ search }) => {
                 </div>
                 <div>
                     <label htmlFor="genres" className="block mb-2 text-sm font-medium text-white dark:text-white">Genres</label>
-                    <select defaultValue={'CA'} name="genres" className="bg-[#202020] w-full text-white text-sm rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#202020] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-white dark:focus:border-white">
-                        <option value="US">United States</option>
-                        <option value="CA">Canada</option>
-                        <option value="FR">France</option>
-                        <option value="DE">Germany</option>
+                    <select defaultValue={''} onChange={handleOrder} name="genres" className="bg-[#202020] w-full min-w-[175px] text-white text-sm rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#202020] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-white dark:focus:border-white">
+                        <option value=''>All</option>
+                        {
+                            genres?.map(genre => <option key={genre.id} value={genre.id} >{genre.name}</option>)
+                        }
                     </select>
                 </div>
             </div>
