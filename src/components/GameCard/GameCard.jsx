@@ -9,7 +9,7 @@ const GameCard = ({ game }) => {
                 <img className="w-full h-[200px] object-cover max-w-full rounded-md"
                     src={game.background_image}
                     alt={game.name} />
-                <div className='p-3 flex flex-col gap-5 text-left'>
+                <div className='p-3 flex flex-col gap-5 pb-[24px] text-left'>
                     <Link to={`/game/` + game.id} >
                         <span className='text-3xl font-semibold text-balance'>{game.name}</span>
                     </Link>
