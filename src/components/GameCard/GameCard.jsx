@@ -23,7 +23,7 @@ const GameCard = ({ game }) => {
                     <Link to={`/game/` + game.id} >
                         <span className='text-3xl font-semibold text-balance'>{game.name}</span>
                     </Link>
-                    <div className='flex-col gap-3 flex lg:hidden lg:group-hover:flex'>
+                    <div className='flex-col gap-3 flex pt-[12px] lg:hidden lg:group-hover:flex'>
                         <div className='flex justify-between'>
                             <span className='text-xs font-bold text-[#636363]'>Release Date:</span>
                             <span className='text-xs text-white'>{game.released}</span>

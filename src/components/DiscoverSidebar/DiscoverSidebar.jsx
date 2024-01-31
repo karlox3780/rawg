@@ -70,7 +70,7 @@ const DiscoverSidebar = () => {
                     </ul>
                 </li>
                 <li className='flex flex-col gap-3 text-2xl font-bold'>
-                    <Link className="text-2xl block font-bold hover:text-[#636363] transition-colors" to="/publishers">All Games</Link>
+                    <Link className="text-2xl block font-bold hover:text-[#636363] transition-colors" to="/games">All Games</Link>
                 </li>
                 <li className='flex flex-col gap-3 text-2xl font-bold'>
                     <Link className="text-2xl block font-bold hover:text-[#636363] transition-colors" to="/publishers">Genres</Link>
