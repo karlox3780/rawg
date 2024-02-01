@@ -61,7 +61,7 @@ const HomePage = ({ search, title, subtitle }) => {
             <div className='flex gap-5 text-left'>
                 <div>
                     <label htmlFor="orderby" className="block mb-2 text-sm font-medium text-white dark:text-white">Order by</label>
-                    <select defaultValue={'-relevance'} onChange={handleOrder} name="orderby" className="bg-[#202020] w-full text-white text-sm rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#202020] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-white dark:focus:border-white">
+                    <select defaultValue={path.includes('games') ? '-added' : '-relevance'} onChange={handleOrder} name="orderby" className="bg-[#202020] w-full text-white text-sm rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#202020] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-white dark:focus:border-white">
                         <option value="-relevance">Relevance</option>
                         <option value="-created">Date added</option>
                         <option value="name">Name</option>
