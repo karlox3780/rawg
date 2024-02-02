@@ -5,7 +5,7 @@ class GameSearch extends InitAxios {
         super("games");
     }
     getSearchGames(gameName, order, genre) {
-        return this.axios.get('', { params: { key: process.env.REACT_APP_API_KEY, search: gameName, page_size: 50, genres: genre, ordering: order ? order : '-released', metacritic: '80,100' } })
+        return this.axios.get('', { params: { key: process.env.REACT_APP_API_KEY, search: gameName, page_size: 50, genres: genre, ordering: order, metacritic: '80,100' } })
             .then((response) => response.data)
             .catch({ error: "error" })
     }

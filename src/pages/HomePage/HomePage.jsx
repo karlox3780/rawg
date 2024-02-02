@@ -30,7 +30,7 @@ const HomePage = ({ search, title, subtitle, selectOrder }) => {
 
     useEffect(() => {
         GameSearch
-            .getSearchGames(search, order, genre)
+            .getSearchGames(search, order === null ? selectOrder : order, genre)
             .then((games) => {
                 setGames(games.results);
             })
@@ -61,7 +61,7 @@ const HomePage = ({ search, title, subtitle, selectOrder }) => {
                 <div>
                     <label htmlFor="orderby" className="block mb-2 text-sm font-medium text-white dark:text-white">Order by</label>
                     {selectOrder === '-added' && <SelectOrder orderby={selectOrder} handleOrder={handleOrder}></SelectOrder>}
-                    {selectOrder === '-relevance' && <SelectOrder orderby={selectOrder} handleOrder={handleOrder}></SelectOrder>}
+                    {selectOrder === '-released' && <SelectOrder orderby={selectOrder} handleOrder={handleOrder}></SelectOrder>}
                 </div>
                 <div>
                     <label htmlFor="genres" className="block mb-2 text-sm font-medium text-white dark:text-white">Genres</label>
