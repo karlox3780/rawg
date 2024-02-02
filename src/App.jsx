@@ -19,8 +19,8 @@ function App() {
       <main className='w-full flex items-start px-[40px]'>
         <DiscoverSidebar />
         <Routes>
-          <Route path="/" element={<HomePage search={search} title="New and trending" subtitle="Based on player counts and release date" />} />
-          <Route path="/games" element={<HomePage search={search} title="All Games" />} />
+          <Route path="/" element={<HomePage search={search} title="New and trending" subtitle="Based on player counts and release date" selectOrder="-relevance" />} />
+          <Route path="/games" element={<HomePage search={search} title="All Games" selectOrder="-added" />} />
           <Route path="/game/:id" element={<GameDetail />} />
         </Routes>
       </main>

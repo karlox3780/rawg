@@ -14,7 +14,7 @@ const GameCard = ({ game }) => {
                     <div className="game-card-medium__meta">
                         <div className="platforms platforms_medium game-card-medium__platforms">
                             {
-                                platforms.length > 0 && platforms.map(platform =>
+                                platforms?.length > 0 && platforms.map(platform =>
                                     <div key={platform.platform.id} className={`platforms__platform platforms__platform_medium platforms__platform_${platform.platform.slug}`}></div>
                                 )
                             }
@@ -33,7 +33,7 @@ const GameCard = ({ game }) => {
                             <span className='text-xs font-bold text-[#636363]'>Genres:</span>
                             <div className='text-xs text-white flex gap-2'>
                                 {
-                                    genres.length > 0 && genres.map(genre =>
+                                    genres?.length > 0 && genres.map(genre =>
                                         <span key={genre.id}>{genre.name}</span>
                                     )
                                 }
