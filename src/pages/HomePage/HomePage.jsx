@@ -8,14 +8,15 @@ import Title from '../../components/Title/Title';
 import SelectOrder from '../../components/SelectOrder/SelectOrder';
 
 const HomePage = ({ search, title, subtitle, selectOrder }) => {
-    const [loading, setLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
     const [games, setGames] = useState([]);
     const [order, setOrder] = useState(null);
     const [genre, setGenre] = useState(null);
     const [genres, setGenres] = useState(null);
+    const [page, setPage] = useState(2);
 
     const handleOrder = (event) => {
-        setLoading(true);
+        setIsLoading(true);
         switch (event.target.name) {
             case "orderby":
                 setOrder(event.target.value);
@@ -29,8 +30,35 @@ const HomePage = ({ search, title, subtitle, selectOrder }) => {
     }
 
     useEffect(() => {
+        const fetchData = async () => {
+            setIsLoading(true);
+            GameSearch
+                .getSearchGames(search, order === null ? selectOrder : order, genre, page)
+                .then((res) => {
+                    setGames((prevItems) => [...prevItems, ...res.results]);
+                })
+                .catch((err) => console.log(err))
+                .finally(() => {
+                    setIsLoading(false);
+                })
+                ;
+
+            setPage((prevPage) => prevPage + 1);
+        };
+        const handleScroll = () => {
+            if (window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight || isLoading) {
+                return;
+            }
+            fetchData();
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, [isLoading, search, order, genre, selectOrder, games, page]);
+
+    useEffect(() => {
+        setIsLoading(true);
         GameSearch
-            .getSearchGames(search, order === null ? selectOrder : order, genre)
+            .getSearchGames(search, order === null ? selectOrder : order, genre, 1)
             .then((games) => {
                 setGames(games.results);
             })
@@ -38,7 +66,7 @@ const HomePage = ({ search, title, subtitle, selectOrder }) => {
                 console.error(err.response.data.errorMessage);
             })
             .finally(() => {
-                setLoading(false);
+                setIsLoading(false);
             });
 
         GenresService
@@ -50,8 +78,10 @@ const HomePage = ({ search, title, subtitle, selectOrder }) => {
                 console.error(err.response.data.errorMessage);
             })
             .finally(() => {
-                setLoading(false);
+                setIsLoading(false);
             });
+        ;
+
     }, [search, order, genre, selectOrder]);
 
     return (
@@ -74,7 +104,10 @@ const HomePage = ({ search, title, subtitle, selectOrder }) => {
                 </div>
             </div>
             {
-                loading ? <Spinner></Spinner> : <GameList games={games} />
+                <>
+                    <GameList games={games} />
+                    {isLoading && <Spinner></Spinner>}
+                </>
             }
         </div>
     )
