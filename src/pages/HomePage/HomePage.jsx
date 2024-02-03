@@ -30,7 +30,7 @@ const HomePage = ({ search, title, subtitle, selectOrder }) => {
     }
 
     useEffect(() => {
-        const fetchData = async () => {
+        const fetchData = () => {
             setIsLoading(true);
             GameSearch
                 .getSearchGames(search, order === null ? selectOrder : order, genre, page)
