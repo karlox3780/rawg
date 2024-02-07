@@ -5,20 +5,30 @@ import parse from "html-react-parser";
 import GameSearchService from '../../services/GameSearch.service';
 
 const GameDetail = () => {
+    const [isLoading, setIsLoading] = useState(false);
     const [game, setGame] = useState(null);
     const { id } = useParams();
 
     useEffect(() => {
+        setIsLoading(true);
         GameSearchService.getGamebyId(id)
             .then((game) => {
                 setGame(game);
             })
+            .catch((err) => {
+                console.error(err.response.data.errorMessage);
+            })
+            .finally(() => {
+                setIsLoading(false);
+            });
+
+
     }, [id]);
 
     return (
         <>
             {
-                game !== null &&
+                (game !== null && !isLoading) &&
                 <div className='w-full'>
                     <div className='container-image z-0' style={{
                         background: `linear-gradient(rgba(15, 15, 15, 0), rgb(21, 21, 21)), linear-gradient(rgba(21, 21, 21, 0.8), rgba(21, 21, 21, 0.5)),url(${game.background_image})`
@@ -34,7 +44,7 @@ const GameDetail = () => {
                                     {parse(String(game.description))}
                                 </div>
                             </div>
-                            <div className='max-w-[384px] ml-[48px]'>
+                            <div className='min-w-[384px] ml-[48px]'>
                                 <img src={game.background_image} alt={game.name} />
                             </div>
                         </div>
