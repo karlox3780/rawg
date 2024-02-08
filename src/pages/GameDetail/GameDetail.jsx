@@ -3,11 +3,14 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import parse from "html-react-parser";
 import GameSearchService from '../../services/GameSearch.service';
+import moment from 'moment';
 
 const GameDetail = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [game, setGame] = useState(null);
     const { id } = useParams();
+    const formattedDate = moment(game?.released).format('MMM D, YYYY').toUpperCase()
+    const platforms = game?.parent_platforms;
 
     useEffect(() => {
         setIsLoading(true);
@@ -37,6 +40,15 @@ const GameDetail = () => {
                     <div className='flex justify-center mt-[32px]'>
                         <div className='flex max-w-[960px]'>
                             <div className='text-left'>
+                                <div className='flex items-center mb-[12px]'>
+                                    <span className='text-[14px] py-[2px] px-[8px] text-[#000] bg-[#fff] rounded-[4px] mr-[10px]'>{formattedDate}</span>
+                                    {
+                                        platforms?.length > 0 && platforms.map(platform =>
+                                            <div key={platform.platform.id} className={`platforms__platform platforms__platform_medium platforms__platform_${platform.platform.slug}`}></div>
+                                        )
+                                    }
+                                    <div className='text-white'>{`AVERAGE PLAYTIME ${game.playtime} HOURS`}</div>
+                                </div>
                                 <h1 className='text-white text-[72px] leading-[74px] font-[700] mb-[48px]'>
                                     {game.name}
                                 </h1>
