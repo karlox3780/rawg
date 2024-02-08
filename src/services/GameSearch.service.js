@@ -14,6 +14,11 @@ class GameSearch extends InitAxios {
             .then((response) => response.data)
             .catch({ error: "error" });
     }
+    getGameScreenshots(id) {
+        return this.axios.get(`${id}/screenshots`, { params: { key: process.env.REACT_APP_API_KEY } })
+            .then((response) => response.data)
+            .catch({ error: "error" });
+    }
 }
 
 export default new GameSearch();

@@ -8,6 +8,7 @@ import moment from 'moment';
 const GameDetail = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [game, setGame] = useState(null);
+    const [screenshots, setScreenshots] = useState([]);
     const { id } = useParams();
     const formattedDate = moment(game?.released).format('MMM D, YYYY').toUpperCase()
     const platforms = game?.parent_platforms;
@@ -25,7 +26,16 @@ const GameDetail = () => {
                 setIsLoading(false);
             });
 
-
+        GameSearchService.getGameScreenshots(id)
+            .then((images) => {
+                setScreenshots(images.results);
+            })
+            .catch((err) => {
+                console.error(err.response.data.errorMessage);
+            })
+            .finally(() => {
+                setIsLoading(false);
+            });
     }, [id]);
 
     return (
