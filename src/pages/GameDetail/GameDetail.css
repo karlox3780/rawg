@@ -9,3 +9,11 @@
     background-size: cover !important;
     z-index: -1;
 }
+
+.gallery-screenshots img {
+    width: 50%;
+}
+
+.gallery-screenshots img:first-child {
+    width: 100%;
+}

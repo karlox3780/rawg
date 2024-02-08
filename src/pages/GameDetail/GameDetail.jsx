@@ -66,8 +66,12 @@ const GameDetail = () => {
                                     {parse(String(game.description))}
                                 </div>
                             </div>
-                            <div className='min-w-[384px] ml-[48px]'>
-                                <img src={game.background_image} alt={game.name} />
+                            <div className='gallery-screenshots min-w-[384px] ml-[48px]'>
+                                {
+                                    platforms?.length > 0 && screenshots.map(screenshot =>
+                                        <img src={screenshot.image} alt={game.name} />
+                                    )
+                                }
                             </div>
                         </div>
                     </div>
