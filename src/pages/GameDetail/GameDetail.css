@@ -12,8 +12,14 @@
 
 .gallery-screenshots img {
     width: 50%;
+    object-fit: cover;
+    padding: 4px;
 }
 
 .gallery-screenshots img:first-child {
     width: 100%;
+}
+
+.gallery-screenshots img:last-child {
+    display: none;
 }
