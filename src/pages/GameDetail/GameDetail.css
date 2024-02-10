@@ -11,15 +11,20 @@
 }
 
 .gallery-screenshots img {
-    width: 50%;
+    width: calc(50% - 6px);
+    max-height: 102px;
     object-fit: cover;
-    padding: 4px;
 }
 
 .gallery-screenshots img:first-child {
     width: 100%;
+    max-height: 216px;
 }
 
 .gallery-screenshots img:last-child {
+    display: none;
+}
+
+.platforms:last-child span {
     display: none;
 }

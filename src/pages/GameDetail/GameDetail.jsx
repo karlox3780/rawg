@@ -57,16 +57,36 @@ const GameDetail = () => {
                                             <div key={platform.platform.id} className={`platforms__platform platforms__platform_medium platforms__platform_${platform.platform.slug}`}></div>
                                         )
                                     }
-                                    <div className='text-white'>{`AVERAGE PLAYTIME ${game.playtime} HOURS`}</div>
+                                    <div className='text-white'>{`AVERAGE PLAYTIME: ${game.playtime} HOURS`}</div>
                                 </div>
                                 <h1 className='text-white text-[72px] leading-[74px] font-[700] mb-[48px]'>
                                     {game.name}
                                 </h1>
                                 <div className='text-white text-left'>
+                                    <h2 className='text-[24px] text-white font-bold mb-[8px]'>About</h2>
                                     {parse(String(game.description))}
                                 </div>
+                                <div className='flex mt-[32px]'>
+                                    <div className='w-[50%]'>
+                                        <div className='text-[hsla(0,0%,100%,.2)] mb-[8px]'>Platforms</div>
+                                        {
+                                            platforms?.length > 0 && platforms.map(platform =>
+                                                <span key={platform.platform.id} className='platforms text-white'>{platform.platform.name}<span>&nbsp;,</span></span>
+                                            )
+                                        }
+                                    </div>
+                                    <div className='w-[50%]'>
+                                        {
+                                            game.metacritic !== null && <><div className='text-[hsla(0,0%,100%,.2)] mb-[8px]'>Metascore</div>
+                                                <div className='text-[#6dc849] border border-[rgba(109,200,73,.4)] w-[32px] rounded-[4px] p-[4px] text-center font-bold'>
+                                                    {game.metacritic}
+                                                </div>
+                                            </>
+                                        }
+                                    </div>
+                                </div>
                             </div>
-                            <div className='gallery-screenshots min-w-[384px] w-[384px] ml-[48px] flex flex-wrap'>
+                            <div className='gallery-screenshots min-w-[384px] w-[384px] ml-[48px] flex flex-wrap content-start gap-[12px]'>
                                 {
                                     platforms?.length > 0 && screenshots.map(screenshot =>
                                         <img key={screenshot.id} className='rounded-[4px]' src={screenshot.image} alt={game.name} />
