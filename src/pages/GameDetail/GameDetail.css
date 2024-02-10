@@ -25,6 +25,7 @@
     display: none;
 }
 
-.platforms:last-child span {
+.platforms:last-child span,
+.genres:last-child span {
     display: none;
 }

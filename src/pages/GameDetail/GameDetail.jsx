@@ -12,6 +12,7 @@ const GameDetail = () => {
     const { id } = useParams();
     const formattedDate = moment(game?.released).format('MMM D, YYYY').toUpperCase()
     const platforms = game?.parent_platforms;
+    const genres = game?.genres;
 
     useEffect(() => {
         setIsLoading(true);
@@ -66,8 +67,8 @@ const GameDetail = () => {
                                     <h2 className='text-[24px] text-white font-bold mb-[8px]'>About</h2>
                                     {parse(String(game.description))}
                                 </div>
-                                <div className='flex mt-[32px]'>
-                                    <div className='w-[50%]'>
+                                <div className='flex mt-[32px] flex-wrap'>
+                                    <div className='w-[50%] mb-[16px] pr-[8px]'>
                                         <div className='text-[hsla(0,0%,100%,.2)] mb-[8px]'>Platforms</div>
                                         {
                                             platforms?.length > 0 && platforms.map(platform =>
@@ -75,13 +76,21 @@ const GameDetail = () => {
                                             )
                                         }
                                     </div>
-                                    <div className='w-[50%]'>
+                                    <div className='w-[50%] mb-[16px] pr-[8px]'>
                                         {
                                             game.metacritic !== null && <><div className='text-[hsla(0,0%,100%,.2)] mb-[8px]'>Metascore</div>
                                                 <div className='text-[#6dc849] border border-[rgba(109,200,73,.4)] w-[32px] rounded-[4px] p-[4px] text-center font-bold'>
                                                     {game.metacritic}
                                                 </div>
                                             </>
+                                        }
+                                    </div>
+                                    <div className='w-[50%] mb-[16px] pr-[8px]'>
+                                        <div className='text-[hsla(0,0%,100%,.2)] mb-[8px]'>Genre</div>
+                                        {
+                                            genres?.length > 0 && genres.map(genre =>
+                                                <span key={genre.id} className='genres text-white'>{genre.name}<span>&nbsp;,</span></span>
+                                            )
                                         }
                                     </div>
                                 </div>
