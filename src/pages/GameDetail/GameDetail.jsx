@@ -10,7 +10,7 @@ const GameDetail = () => {
     const [game, setGame] = useState(null);
     const [screenshots, setScreenshots] = useState([]);
     const { id } = useParams();
-    const formattedDate = moment(game?.released).format('MMM D, YYYY').toUpperCase()
+    const formattedDate = moment(game?.released).format('MMM D, YYYY')
     const platforms = game?.parent_platforms;
     const genres = game?.genres;
 
@@ -52,7 +52,7 @@ const GameDetail = () => {
                         <div className='flex max-w-[960px]'>
                             <div className='text-left'>
                                 <div className='flex items-center mb-[12px]'>
-                                    <span className='text-[14px] py-[2px] px-[8px] text-[#000] bg-[#fff] rounded-[4px] mr-[10px]'>{formattedDate}</span>
+                                    <span className='text-[14px] py-[2px] px-[8px] text-[#000] bg-[#fff] rounded-[4px] mr-[10px]'>{formattedDate.toUpperCase()}</span>
                                     {
                                         platforms?.length > 0 && platforms.map(platform =>
                                             <div key={platform.platform.id} className={`platforms__platform platforms__platform_medium platforms__platform_${platform.platform.slug}`}></div>
@@ -68,7 +68,7 @@ const GameDetail = () => {
                                     {parse(String(game.description))}
                                 </div>
                                 <div className='flex mt-[32px] flex-wrap'>
-                                    <div className='w-[50%] mb-[16px] pr-[8px]'>
+                                    <div className='w-[50%] mb-[11px] pr-[8px]'>
                                         <div className='text-[hsla(0,0%,100%,.2)] mb-[8px]'>Platforms</div>
                                         {
                                             platforms?.length > 0 && platforms.map(platform =>
@@ -76,7 +76,7 @@ const GameDetail = () => {
                                             )
                                         }
                                     </div>
-                                    <div className='w-[50%] mb-[16px] pr-[8px]'>
+                                    <div className='w-[50%] mb-[11px] pr-[8px]'>
                                         {
                                             game.metacritic !== null && <><div className='text-[hsla(0,0%,100%,.2)] mb-[8px]'>Metascore</div>
                                                 <div className='text-[#6dc849] border border-[rgba(109,200,73,.4)] w-[32px] rounded-[4px] p-[4px] text-center font-bold'>
@@ -85,13 +85,17 @@ const GameDetail = () => {
                                             </>
                                         }
                                     </div>
-                                    <div className='w-[50%] mb-[16px] pr-[8px]'>
+                                    <div className='w-[50%] mb-[11px] pr-[8px]'>
                                         <div className='text-[hsla(0,0%,100%,.2)] mb-[8px]'>Genre</div>
                                         {
                                             genres?.length > 0 && genres.map(genre =>
                                                 <span key={genre.id} className='genres text-white'>{genre.name}<span>&nbsp;,</span></span>
                                             )
                                         }
+                                    </div>
+                                    <div className='w-[50%] mb-[11px] pr-[8px]'>
+                                        <div className='text-[hsla(0,0%,100%,.2)] mb-[8px]'>Release date</div>
+                                        <div className='text-white'>{formattedDate}</div>
                                     </div>
                                 </div>
                             </div>
