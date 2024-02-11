@@ -105,6 +105,14 @@ const GameDetail = () => {
                                                 )
                                             }
                                         </div>
+                                        <div className='w-[50%] mb-[11px] pr-[8px]'>
+                                            <div className='text-[hsla(0,0%,100%,.2)] mb-[8px]'>Publishers</div>
+                                            {
+                                                game.publishers?.length > 0 && game.publishers.map(publisher =>
+                                                    <span key={publisher.id} className='genres text-white'>{publisher.name}<span>,&nbsp;</span></span>
+                                                )
+                                            }
+                                        </div>
                                     </div>
                                 </div>
                                 <div className='gallery-screenshots min-w-[384px] w-[384px] ml-[48px] flex flex-wrap content-start gap-[12px]'>
