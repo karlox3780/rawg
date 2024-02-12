@@ -13,6 +13,7 @@ const GameDetail = () => {
     const { id } = useParams();
     const formattedDate = moment(game?.released).format('MMM D, YYYY')
     const platforms = game?.parent_platforms;
+    const platformsReq = game?.platforms;
     const genres = game?.genres;
 
     useEffect(() => {
@@ -110,6 +111,23 @@ const GameDetail = () => {
                                             {
                                                 game.publishers?.length > 0 && game.publishers.map(publisher =>
                                                     <span key={publisher.id} className='genres text-white'>{publisher.name}<span>,&nbsp;</span></span>
+                                                )
+                                            }
+                                        </div>
+                                        {
+                                            game.tags?.length > 0 && <div className='w-[100%] mb-[11px] pr-[8px]'>
+                                                <div className='text-[hsla(0,0%,100%,.2)] mb-[8px]'>Tags</div>
+                                                {
+                                                    game.tags.map(tag =>
+                                                        <span key={tag.id} className='genres text-white'>{tag.name}<span>,&nbsp;</span></span>
+                                                    )
+                                                }
+                                            </div>
+                                        }
+                                        <div className='w-[100%] mb-[11px] pr-[8px]'>
+                                            {
+                                                platformsReq?.length > 0 && platformsReq.map(platform =>
+                                                    <div key={platform.platform.id} className='text-white'>{platform.requirements?.minimum}</div>
                                                 )
                                             }
                                         </div>
