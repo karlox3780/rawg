@@ -26,6 +26,9 @@
 }
 
 .platforms:last-child span,
-.genres:last-child span {
+.genres:last-child span,
+.developers:last-child span,
+.publishers:last-child span,
+.tags:last-child span {
     display: none;
 }

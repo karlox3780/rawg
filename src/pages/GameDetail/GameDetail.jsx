@@ -102,7 +102,7 @@ const GameDetail = () => {
                                             <div className='text-[hsla(0,0%,100%,.2)] mb-[8px]'>Developer</div>
                                             {
                                                 game.developers?.length > 0 && game.developers.map(developer =>
-                                                    <span key={developer.id} className='genres text-white'>{developer.name}<span>,&nbsp;</span></span>
+                                                    <span key={developer.id} className='developers text-white'>{developer.name}<span>,&nbsp;</span></span>
                                                 )
                                             }
                                         </div>
@@ -110,7 +110,7 @@ const GameDetail = () => {
                                             <div className='text-[hsla(0,0%,100%,.2)] mb-[8px]'>Publishers</div>
                                             {
                                                 game.publishers?.length > 0 && game.publishers.map(publisher =>
-                                                    <span key={publisher.id} className='genres text-white'>{publisher.name}<span>,&nbsp;</span></span>
+                                                    <span key={publisher.id} className='publishers text-white'>{publisher.name}<span>,&nbsp;</span></span>
                                                 )
                                             }
                                         </div>
@@ -119,15 +119,21 @@ const GameDetail = () => {
                                                 <div className='text-[hsla(0,0%,100%,.2)] mb-[8px]'>Tags</div>
                                                 {
                                                     game.tags.map(tag =>
-                                                        <span key={tag.id} className='genres text-white'>{tag.name}<span>,&nbsp;</span></span>
+                                                        <span key={tag.id} className='tags text-white'>{tag.name}<span>,&nbsp;</span></span>
                                                     )
                                                 }
+                                            </div>
+                                        }
+                                        {
+                                            game.website !== "" && <div className='w-[50%] mb-[11px] pr-[8px]'>
+                                                <div className='text-[hsla(0,0%,100%,.2)] mb-[8px]'>Website</div>
+                                                <a href={game.website} className='text-white underline' target="_blank" rel='noreferrer'>{game.website}</a>
                                             </div>
                                         }
                                         <div className='w-[100%] mb-[11px] pr-[8px]'>
                                             {
                                                 platformsReq?.length > 0 && platformsReq.map(platform =>
-                                                    <div key={platform.platform.id} className='text-white'>{platform.requirements?.minimum}</div>
+                                                    <div key={platform.platform.id} className='text-white'><pre>{platform.requirements?.minimum}</pre></div>
                                                 )
                                             }
                                         </div>
