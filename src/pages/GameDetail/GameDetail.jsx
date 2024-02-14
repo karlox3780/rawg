@@ -11,7 +11,7 @@ const GameDetail = () => {
     const [game, setGame] = useState(null);
     const [screenshots, setScreenshots] = useState([]);
     const { id } = useParams();
-    const formattedDate = moment(game?.released).format('MMM D, YYYY')
+    const formattedDate = moment(game?.released).format('MMM D, YYYY');
     const platforms = game?.parent_platforms;
     const platformsReq = game?.platforms;
     const genres = game?.genres;
@@ -45,7 +45,7 @@ const GameDetail = () => {
         <>
             {
                 (game !== null && !isLoading) ?
-                    <div className='w-full'>
+                    <div className='w-full game-detail'>
                         <div className='container-image z-0' style={{
                             background: `linear-gradient(rgba(15, 15, 15, 0), rgb(21, 21, 21)), linear-gradient(rgba(21, 21, 21, 0.8), rgba(21, 21, 21, 0.5)),url(${game.background_image})`
                         }}>
@@ -54,13 +54,13 @@ const GameDetail = () => {
                             <div className='flex max-w-[960px]'>
                                 <div className='text-left'>
                                     <div className='flex items-center mb-[12px]'>
-                                        <span className='text-[14px] py-[2px] px-[8px] text-[#000] bg-[#fff] rounded-[4px] mr-[10px]'>{formattedDate.toUpperCase()}</span>
+                                        {game.released !== null && <span className='text-[14px] py-[2px] px-[8px] text-[#000] bg-[#fff] rounded-[4px] mr-[10px]'>{formattedDate.toUpperCase()}</span>}
                                         {
                                             platforms?.length > 0 && platforms.map(platform =>
                                                 <div key={platform.platform.id} className={`platforms__platform platforms__platform_medium platforms__platform_${platform.platform.slug}`}></div>
                                             )
                                         }
-                                        <div className='text-white'>{`AVERAGE PLAYTIME: ${game.playtime} HOURS`}</div>
+                                        {game.playtime > 0 && <div className='text-white'>{`AVERAGE PLAYTIME: ${game.playtime} HOURS`}</div>}
                                     </div>
                                     <h1 className='text-white text-[72px] leading-[74px] font-[700] mb-[48px]'>
                                         {game.name}
@@ -133,7 +133,12 @@ const GameDetail = () => {
                                         <div className='w-[100%] mb-[11px] pr-[8px]'>
                                             {
                                                 platformsReq?.length > 0 && platformsReq.map(platform =>
-                                                    <div key={platform.platform.id} className='text-white'><pre>{platform.requirements?.minimum}</pre></div>
+
+                                                    Object.keys(platform.requirements).length > 0 && <>
+                                                        <div key={platform.platform.id} className='text-white'><h2 className='text-[20px] font-[700] mb-[20px]'>System requirements for {platform.platform.name}</h2></div>
+                                                        <div key={platform.platform.id} className='text-white mb-[20px]'><pre>{platform.requirements?.minimum}</pre></div>
+                                                        <div key={platform.platform.id} className='text-white mb-[20px]'><pre>{platform.requirements?.recommended}</pre></div>
+                                                    </>
                                                 )
                                             }
                                         </div>
