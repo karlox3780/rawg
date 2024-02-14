@@ -6,8 +6,10 @@ import GameList from '../../components/GameList/GameList';
 import Spinner from '../../components/Spinner/Spinner';
 import Title from '../../components/Title/Title';
 import SelectOrder from '../../components/SelectOrder/SelectOrder';
+import { useParams } from 'react-router-dom';
 
 const HomePage = ({ search, title, subtitle, selectOrder }) => {
+    const { genreParam } = useParams();
     const [isLoading, setIsLoading] = useState(false);
     const [games, setGames] = useState([]);
     const [order, setOrder] = useState(null);
@@ -33,7 +35,7 @@ const HomePage = ({ search, title, subtitle, selectOrder }) => {
         const fetchData = () => {
             setIsLoading(true);
             GameSearch
-                .getSearchGames(search, order === null ? selectOrder : order, genre, page)
+                .getSearchGames(search, order === null ? selectOrder : order, genreParam ? genreParam : genre, page)
                 .then((res) => {
                     setGames((prevItems) => [...prevItems, ...res.results]);
                 })
