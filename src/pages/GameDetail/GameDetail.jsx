@@ -134,11 +134,11 @@ const GameDetail = () => {
                                             {
                                                 platformsReq?.length > 0 && platformsReq.map(platform =>
 
-                                                    Object.keys(platform.requirements).length > 0 && <>
-                                                        <div key={platform.platform.id} className='text-white'><h2 className='text-[20px] font-[700] mb-[20px]'>System requirements for {platform.platform.name}</h2></div>
-                                                        <div key={platform.platform.id} className='text-white mb-[20px]'><pre>{platform.requirements?.minimum}</pre></div>
-                                                        <div key={platform.platform.id} className='text-white mb-[20px]'><pre>{platform.requirements?.recommended}</pre></div>
-                                                    </>
+                                                    Object.keys(platform.requirements).length > 0 && <div key={platform.platform.id}>
+                                                        <div className='text-white'><h2 className='text-[30px] font-[700] mb-[20px]'>System requirements for {platform.platform.name}</h2></div>
+                                                        <div className='text-white mb-[20px]'><pre>{platform.requirements?.minimum}</pre></div>
+                                                        <div className='text-white mb-[20px]'><pre>{platform.requirements?.recommended}</pre></div>
+                                                    </div>
                                                 )
                                             }
                                         </div>
