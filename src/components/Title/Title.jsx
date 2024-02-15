@@ -5,7 +5,7 @@ const Title = ({ title, subtitle }) => {
         <>
             {
                 (title || subtitle) && <div className="flex flex-col gap-3 text-left">
-                    {title && <h1 className="text-5xl md:text-7xl text-white font-bold">{title}</h1>}
+                    {title && <h1 className="text-5xl md:text-7xl text-white font-bold capitalize">{title}</h1>}
                     {subtitle && <span className="text-md text-white">{subtitle}</span>}
                 </div>
             }

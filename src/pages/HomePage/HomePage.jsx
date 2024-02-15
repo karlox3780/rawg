@@ -55,12 +55,12 @@ const HomePage = ({ search, title, subtitle, selectOrder }) => {
         };
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
-    }, [isLoading, search, order, genre, selectOrder, games, page]);
+    }, [isLoading, search, order, genre, selectOrder, games, page, genreParam]);
 
     useEffect(() => {
         setIsLoading(true);
         GameSearch
-            .getSearchGames(search, order === null ? selectOrder : order, genre, 1)
+            .getSearchGames(search, order === null ? selectOrder : order, genreParam ? genreParam : genre, 1)
             .then((games) => {
                 setGames(games.results);
             })
@@ -84,27 +84,29 @@ const HomePage = ({ search, title, subtitle, selectOrder }) => {
             });
         ;
 
-    }, [search, order, genre, selectOrder]);
+    }, [search, order, genre, selectOrder, genreParam]);
 
     return (
         <div className='w-full flex flex-col gap-5'>
-            <Title title={title} subtitle={subtitle}></Title>
-            <div className='flex gap-5 text-left'>
-                <div>
-                    <label htmlFor="orderby" className="block mb-2 text-sm font-medium text-white dark:text-white">Order by</label>
-                    {selectOrder === '-added' && <SelectOrder orderby={selectOrder} handleOrder={handleOrder}></SelectOrder>}
-                    {selectOrder === '-released' && <SelectOrder orderby={selectOrder} handleOrder={handleOrder}></SelectOrder>}
+            <Title title={genreParam ? genreParam === "role-playing-games-rpg" ? "RPG" : genreParam : title} subtitle={subtitle}></Title>
+            {
+                !genreParam && <div className='flex gap-5 text-left'>
+                    <div>
+                        <label htmlFor="orderby" className="block mb-2 text-sm font-medium text-white dark:text-white">Order by</label>
+                        {selectOrder === '-added' && <SelectOrder orderby={selectOrder} handleOrder={handleOrder}></SelectOrder>}
+                        {selectOrder === '-released' && <SelectOrder orderby={selectOrder} handleOrder={handleOrder}></SelectOrder>}
+                    </div>
+                    <div>
+                        <label htmlFor="genres" className="block mb-2 text-sm font-medium text-white dark:text-white">Genres</label>
+                        <select defaultValue={''} onChange={handleOrder} name="genres" className="bg-[#202020] w-full min-w-[175px] text-white text-sm rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#202020] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-white dark:focus:border-white">
+                            <option value=''>All</option>
+                            {
+                                genres?.map(genre => <option key={genre.id} value={genre.id} >{genre.name}</option>)
+                            }
+                        </select>
+                    </div>
                 </div>
-                <div>
-                    <label htmlFor="genres" className="block mb-2 text-sm font-medium text-white dark:text-white">Genres</label>
-                    <select defaultValue={''} onChange={handleOrder} name="genres" className="bg-[#202020] w-full min-w-[175px] text-white text-sm rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#202020] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-white dark:focus:border-white">
-                        <option value=''>All</option>
-                        {
-                            genres?.map(genre => <option key={genre.id} value={genre.id} >{genre.name}</option>)
-                        }
-                    </select>
-                </div>
-            </div>
+            }
             {
                 <>
                     <GameList games={games} />

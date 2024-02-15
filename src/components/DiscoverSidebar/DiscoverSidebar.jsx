@@ -76,7 +76,7 @@ const DiscoverSidebar = () => {
                     <Link className="text-2xl block font-bold hover:text-[#636363] transition-colors" to="/publishers">Genres</Link>
                     <ul className='flex flex-col gap-2'>
                         <li>
-                            <Link className='text-lg font-normal flex items-center gap-2 group'>
+                            <Link className='text-lg font-normal flex items-center gap-2 group' to="/games/genres/action">
                                 <span className='p-2 bg-[#202020] text-white rounded-xl group-hover:bg-white group-hover:text-[#202020] transition-colors duration-300'>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round" className="size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M20 4v5l-9 7l-4 4l-3 -3l4 -4l7 -9z"></path><path d="M6.5 11.5l6 6"></path></svg>
                                 </span>
@@ -84,7 +84,7 @@ const DiscoverSidebar = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link className='text-lg font-normal flex items-center gap-2 group'>
+                            <Link className='text-lg font-normal flex items-center gap-2 group' to="/games/genres/indie">
                                 <span className='p-2 bg-[#202020] text-white rounded-xl group-hover:bg-white group-hover:text-[#202020] transition-colors duration-300'>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round" className="size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M20 4v5l-9 7l-4 4l-3 -3l4 -4l7 -9z"></path><path d="M6.5 11.5l6 6"></path></svg>
                                 </span>
@@ -92,7 +92,7 @@ const DiscoverSidebar = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link className='text-lg font-normal flex items-center gap-2 group'>
+                            <Link className='text-lg font-normal flex items-center gap-2 group' to="/games/genres/adventure">
                                 <span className='p-2 bg-[#202020] text-white rounded-xl group-hover:bg-white group-hover:text-[#202020] transition-colors duration-300'>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round" className="size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M20 4v5l-9 7l-4 4l-3 -3l4 -4l7 -9z"></path><path d="M6.5 11.5l6 6"></path></svg>
                                 </span>
@@ -100,7 +100,7 @@ const DiscoverSidebar = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link className='text-lg font-normal flex items-center gap-2 group'>
+                            <Link className='text-lg font-normal flex items-center gap-2 group' to="/games/genres/role-playing-games-rpg">
                                 <span className='p-2 bg-[#202020] text-white rounded-xl group-hover:bg-white group-hover:text-[#202020] transition-colors duration-300'>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round" className="size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M20 4v5l-9 7l-4 4l-3 -3l4 -4l7 -9z"></path><path d="M6.5 11.5l6 6"></path></svg>
                                 </span>
@@ -108,7 +108,7 @@ const DiscoverSidebar = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link className='text-lg font-normal flex items-center gap-2 group'>
+                            <Link className='text-lg font-normal flex items-center gap-2 group' to="/games/genres/strategy">
                                 <span className='p-2 bg-[#202020] text-white rounded-xl group-hover:bg-white group-hover:text-[#202020] transition-colors duration-300'>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round" className="size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M20 4v5l-9 7l-4 4l-3 -3l4 -4l7 -9z"></path><path d="M6.5 11.5l6 6"></path></svg>
                                 </span>
