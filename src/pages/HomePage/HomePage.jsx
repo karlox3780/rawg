@@ -82,7 +82,7 @@ const HomePage = ({ search, title, subtitle, selectOrder }) => {
         const fetchData = () => {
             setIsLoading(true);
             GameSearch
-                .getSearchGames(search, order === null ? selectOrder : order, genreParam ? genreParam : genre, page, dateParam === "last-30-days" ? dateCalc("last-30-days", 30) : '', (dateParam === "this-week" || dateParam === "next-week") ? dateParam === "this-week" ? dateCalc("this-week", 7) : dateCalc("next-week", 7) : '')
+                .getSearchGames(search, order === null ? selectOrder : order, genreParam ? genreParam : genre, page, dateParam ? dateCalc(dateParam, dateParam === "last-30-days" ? 30 : 7) : '')
                 .then((res) => {
                     setGames((prevItems) => [...prevItems, ...res.results]);
                 })
@@ -107,7 +107,7 @@ const HomePage = ({ search, title, subtitle, selectOrder }) => {
     useEffect(() => {
         setIsLoading(true);
         GameSearch
-            .getSearchGames(search, order === null ? selectOrder : order, genreParam ? genreParam : genre, 1, dateParam === "last-30-days" ? dateCalc("last-30-days", 30) : '', (dateParam === "this-week" || dateParam === "next-week") ? dateParam === "this-week" ? dateCalc("this-week", 7) : dateCalc("next-week", 7) : '')
+            .getSearchGames(search, order === null ? selectOrder : order, genreParam ? genreParam : genre, 1, dateParam ? dateCalc(dateParam, dateParam === "last-30-days" ? 30 : 7) : '')
             .then((games) => {
                 setGames(games.results);
             })
