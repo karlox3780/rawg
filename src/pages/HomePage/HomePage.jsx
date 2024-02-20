@@ -7,15 +7,38 @@ import Spinner from '../../components/Spinner/Spinner';
 import Title from '../../components/Title/Title';
 import SelectOrder from '../../components/SelectOrder/SelectOrder';
 import { useParams } from 'react-router-dom';
+import moment from 'moment';
 
 const HomePage = ({ search, title, subtitle, selectOrder }) => {
     const { genreParam } = useParams();
+    const { dateParam } = useParams();
     const [isLoading, setIsLoading] = useState(false);
     const [games, setGames] = useState([]);
     const [order, setOrder] = useState(null);
     const [genre, setGenre] = useState(null);
     const [genres, setGenres] = useState(null);
     const [page, setPage] = useState(2);
+
+    const dateCalc = (operation, days) => {
+        var fecha = new Date();
+        var otraFecha = new Date();
+        var startOfWeek = moment(moment().startOf('isoweek').toDate()).format('YYYY-MM-DD');;
+        var endOfWeek = moment(moment().endOf('isoweek').toDate()).format('YYYY-MM-DD');
+
+        if (operation === "last-30-days") {
+            otraFecha = otraFecha.setDate(fecha.getDate() - days);
+            return moment(otraFecha).format('YYYY-MM-DD') + ',' + moment(fecha).format('YYYY-MM-DD')
+        }
+        else if (operation === "this-week") {
+            otraFecha = otraFecha.setDate(fecha.getDate() + days);
+            return startOfWeek + ',' + endOfWeek
+        }
+        else if (operation === "next-week") {
+            otraFecha = otraFecha.setDate(fecha.getDate() + (days * 2));
+            fecha = fecha.setDate(fecha.getDate() + days);
+            return moment(fecha).format('YYYY-MM-DD') + ',' + moment(otraFecha).format('YYYY-MM-DD')
+        }
+    }
 
     const handleOrder = (event) => {
         setIsLoading(true);
@@ -30,12 +53,36 @@ const HomePage = ({ search, title, subtitle, selectOrder }) => {
                 break;
         }
     }
+    const titlePage = () => {
+        if (genreParam) {
+            if (genreParam === "role-playing-games-rpg") {
+                return "RPG";
+            } else {
+                return genreParam;
+            }
+        } else {
+            if (dateParam) {
+                switch (dateParam) {
+                    case "last-30-days":
+                        return "Last 30 Days";
+                    case "this-week":
+                        return "This week";
+                    case "next-week":
+                        return "Next week";
+                    default:
+                        break;
+                }
+            } else {
+                return title;
+            }
+        }
 
+    }
     useEffect(() => {
         const fetchData = () => {
             setIsLoading(true);
             GameSearch
-                .getSearchGames(search, order === null ? selectOrder : order, genreParam ? genreParam : genre, page)
+                .getSearchGames(search, order === null ? selectOrder : order, genreParam ? genreParam : genre, page, dateParam === "last-30-days" ? dateCalc("last-30-days", 30) : '', (dateParam === "this-week" || dateParam === "next-week") ? dateParam === "this-week" ? dateCalc("this-week", 7) : dateCalc("next-week", 7) : '')
                 .then((res) => {
                     setGames((prevItems) => [...prevItems, ...res.results]);
                 })
@@ -55,12 +102,12 @@ const HomePage = ({ search, title, subtitle, selectOrder }) => {
         };
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
-    }, [isLoading, search, order, genre, selectOrder, games, page, genreParam]);
+    }, [isLoading, search, order, genre, selectOrder, games, page, genreParam, dateParam]);
 
     useEffect(() => {
         setIsLoading(true);
         GameSearch
-            .getSearchGames(search, order === null ? selectOrder : order, genreParam ? genreParam : genre, 1)
+            .getSearchGames(search, order === null ? selectOrder : order, genreParam ? genreParam : genre, 1, dateParam === "last-30-days" ? dateCalc("last-30-days", 30) : '', (dateParam === "this-week" || dateParam === "next-week") ? dateParam === "this-week" ? dateCalc("this-week", 7) : dateCalc("next-week", 7) : '')
             .then((games) => {
                 setGames(games.results);
             })
@@ -84,11 +131,11 @@ const HomePage = ({ search, title, subtitle, selectOrder }) => {
             });
         ;
 
-    }, [search, order, genre, selectOrder, genreParam]);
+    }, [search, order, genre, selectOrder, genreParam, dateParam]);
 
     return (
         <div className='w-full flex flex-col gap-5'>
-            <Title title={genreParam ? genreParam === "role-playing-games-rpg" ? "RPG" : genreParam : title} subtitle={subtitle}></Title>
+            <Title title={titlePage()} subtitle={subtitle}></Title>
             {
                 !genreParam && <div className='flex gap-5 text-left'>
                     <div>

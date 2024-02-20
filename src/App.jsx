@@ -22,6 +22,7 @@ function App() {
           <Route path="/" element={<HomePage search={search} title="New and trending" subtitle="Based on player counts and release date" selectOrder="-released" />} />
           <Route path="/games" element={<HomePage search={search} title="All Games" selectOrder="-added" />} />
           <Route path="/games/genres/:genreParam" element={<HomePage search={search} selectOrder="-released" />} />
+          <Route path="/games/:dateParam" element={<HomePage search={search} selectOrder="-released" />} />
           <Route path="/games/:id" element={<GameDetail />} />
         </Routes>
       </main>
