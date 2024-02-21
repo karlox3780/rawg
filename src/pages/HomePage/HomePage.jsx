@@ -54,7 +54,6 @@ const HomePage = ({ search, title, subtitle, selectOrder }) => {
                 break;
         }
     }
-
     useEffect(() => {
         const fetchData = () => {
             setIsLoading(true);
