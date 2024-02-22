@@ -13,6 +13,7 @@ const HomePage = ({ search, title, subtitle, selectOrder }) => {
     const { genreParam } = useParams();
     const { dateParam } = useParams();
     const [isLoading, setIsLoading] = useState(false);
+    const [titleState, setTitleState] = useState(null);
     const [games, setGames] = useState([]);
     const [order, setOrder] = useState(null);
     const [genre, setGenre] = useState(null);
@@ -53,44 +54,18 @@ const HomePage = ({ search, title, subtitle, selectOrder }) => {
                 break;
         }
     }
-    const titlePage = () => {
-        if (genreParam) {
-            if (genreParam === "role-playing-games-rpg") {
-                return "RPG";
-            } else {
-                return genreParam;
-            }
-        } else {
-            if (dateParam) {
-                switch (dateParam) {
-                    case "last-30-days":
-                        return "Last 30 Days";
-                    case "this-week":
-                        return "This week";
-                    case "next-week":
-                        return "Next week";
-                    default:
-                        break;
-                }
-            } else {
-                return title;
-            }
-        }
-
-    }
     useEffect(() => {
         const fetchData = () => {
             setIsLoading(true);
             GameSearch
-                .getSearchGames(search, order === null ? selectOrder : order, genreParam ? genreParam : genre, page, dateParam ? dateCalc(dateParam, dateParam === "last-30-days" ? 30 : 7) : '')
+                .getSearchGames(search, order === null ? selectOrder : order, genre, page, dateParam ? dateCalc(dateParam, dateParam === "last-30-days" ? 30 : 7) : '')
                 .then((res) => {
                     setGames((prevItems) => [...prevItems, ...res.results]);
                 })
                 .catch((err) => console.log(err))
                 .finally(() => {
                     setIsLoading(false);
-                })
-                ;
+                });
 
             setPage((prevPage) => prevPage + 1);
         };
@@ -102,14 +77,40 @@ const HomePage = ({ search, title, subtitle, selectOrder }) => {
         };
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
-    }, [isLoading, search, order, genre, selectOrder, games, page, genreParam, dateParam]);
+    }, [isLoading, search, order, genre, selectOrder, page, dateParam]);
 
     useEffect(() => {
+        let isActive = true;
         setIsLoading(true);
+        if (genreParam) {
+            if (genreParam === "role-playing-games-rpg") {
+                setTitleState("RPG");
+                setGenre(genreParam);
+            } else {
+                setTitleState(genreParam);
+                setGenre(genreParam);
+            }
+        } else if (dateParam) {
+            switch (dateParam) {
+                case "last-30-days":
+                    setTitleState("Last 30 Days");
+                    break;
+                case "this-week":
+                    setTitleState("This week");
+                    break;
+                case "next-week":
+                    setTitleState("Next week");
+                    break;
+                default:
+                    break;
+            }
+        } else {
+            setTitleState(title);
+        }
         GameSearch
-            .getSearchGames(search, order === null ? selectOrder : order, genreParam ? genreParam : genre, 1, dateParam ? dateCalc(dateParam, dateParam === "last-30-days" ? 30 : 7) : '')
+            .getSearchGames(search, order === null ? selectOrder : order, genre, 1, dateParam ? dateCalc(dateParam, dateParam === "last-30-days" ? 30 : 7) : '')
             .then((games) => {
-                setGames(games.results);
+                if (isActive) setGames(games.results);
             })
             .catch((err) => {
                 console.error(err.response.data.errorMessage);
@@ -121,7 +122,7 @@ const HomePage = ({ search, title, subtitle, selectOrder }) => {
         GenresService
             .getGenres()
             .then((genres) => {
-                setGenres(genres.results)
+                if (isActive) setGenres(genres.results)
             })
             .catch((err) => {
                 console.error(err.response.data.errorMessage);
@@ -129,13 +130,14 @@ const HomePage = ({ search, title, subtitle, selectOrder }) => {
             .finally(() => {
                 setIsLoading(false);
             });
-        ;
-
-    }, [search, order, genre, selectOrder, genreParam, dateParam]);
+        return () => {
+            isActive = false;
+        }
+    }, [search, order, genre, selectOrder, title, titleState, genreParam, dateParam]);
 
     return (
         <div className='w-full flex flex-col gap-5'>
-            <Title title={titlePage()} subtitle={subtitle}></Title>
+            <Title title={titleState} subtitle={subtitle}></Title>
             {
                 !genreParam && <div className='flex gap-5 text-left'>
                     <div>
@@ -156,7 +158,7 @@ const HomePage = ({ search, title, subtitle, selectOrder }) => {
             }
             {
                 <>
-                    <GameList games={games} />
+                    {games.length && <GameList games={games} />}
                     {isLoading && <Spinner></Spinner>}
                 </>
             }
