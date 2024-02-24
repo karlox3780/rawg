@@ -34,7 +34,7 @@ const GameCard = ({ game }) => {
                             <div className='text-xs text-white flex flex-row flex-wrap gap-2'>
                                 {
                                     genres?.length > 0 && genres.map(genre =>
-                                        <div key={genre.id}>{genre.name}</div>
+                                        <span key={genre.id}>{genre.name}</span>
                                     )
                                 }
                             </div>
