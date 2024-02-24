@@ -4,7 +4,7 @@ import LinksMenu from '../LinksMenu/LinksMenu';
 
 const DiscoverSidebar = () => {
     return (
-        <nav className='sticky top-0 text-white text-left py-5 z-0 w-[200px] pr-[20px]'>
+        <nav className='sticky top-0 text-white text-left py-5 z-0 w-[200px] pr-[20px] max-md:hidden'>
             <ul className='flex flex-col gap-5'>
                 <li className='flex flex-col gap-3 text-2xl font-bold'>
                     <Link className="text-2xl block font-bold hover:text-[#636363] transition-colors" to="/">Home</Link>

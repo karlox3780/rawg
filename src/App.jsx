@@ -16,7 +16,7 @@ function App() {
   return (
     <div className="App">
       <Navbar filterGames={filterGames} />
-      <main className='w-full flex items-start px-[40px] pb-[100px]'>
+      <main className='w-full flex items-start px-[40px] pb-[100px] max-md:px-[15px]'>
         <DiscoverSidebar />
         <Routes>
           <Route path="/" element={<HomePage search={search} title="New and trending" subtitle="Based on player counts and release date" selectOrder="-released" />} />

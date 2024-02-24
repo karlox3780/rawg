@@ -3,7 +3,7 @@ import './Navbar.css';
 
 const Navbar = ({ filterGames }) => {
     return (
-        <header className='relative flex items-center gap-5 bg-transparent z-10 py-[24px] px-[40px]'>
+        <header className='relative flex items-center gap-5 bg-transparent z-10 py-[24px] px-[40px] max-md:px-[15px]'>
             <h1 className='text-2xl block font-bold text-white'><Link to="/">RAWG</Link></h1>
             <div className='relative w-full'>
                 <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
