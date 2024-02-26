@@ -82,7 +82,7 @@ const HomePage = ({ search, title, subtitle, selectOrder }) => {
     useEffect(() => {
         let isActive = true;
         setIsLoading(true);
-        setGenre(null);
+        if (!genreParam && genre === null) setGenre(null);
         if (genreParam) {
             if (genreParam === "role-playing-games-rpg") {
                 setTitleState("RPG");
