@@ -12,7 +12,7 @@ const Navbar = ({ filterGames }) => {
                         </path>
                     </svg>
                 </div>
-                <div className="absolute gap-1 inset-y-0 end-0 flex items-center pe-5 pointer-events-none text-sm text-gray-500">
+                <div className="absolute gap-1 inset-y-0 end-0 flex items-center pe-5 pointer-events-none text-sm text-gray-500 max-md:hidden">
                     <div className="border border-gray-500 px-1.5 py-0.5">
                         <code>alt</code>
                     </div>
@@ -28,7 +28,7 @@ const Navbar = ({ filterGames }) => {
                     onChange={filterGames}
                 ></input>
             </div>
-            <div className="flex text-white gap-5 items-center whitespace-nowrap">
+            <div className="flex text-white gap-5 items-center max-md:hidden whitespace-nowrap">
                 <Link className="text-sm font-semibold hover:underline hover:underline-offset-8" href="/rawg-angular/auth">LOG IN</Link>
                 <Link to="https://rawg.io/apidocs" target="_blank" className="text-sm font-semibold hover:underline hover:underline-offset-8">API</Link>
 
