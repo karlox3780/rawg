@@ -54,7 +54,7 @@ const GameDetail = () => {
                             <div className='flex max-w-[960px] max-lg:flex-col-reverse'>
                                 <div className='text-left'>
                                     <div className='flex items-center mb-[12px]'>
-                                        {game.released !== null && <span className='text-[14px] py-[2px] px-[8px] text-[#000] bg-[#fff] rounded-[4px] mr-[10px]'>{formattedDate.toUpperCase()}</span>}
+                                        {game.released !== null && <span className='text-[14px] py-[2px] px-[8px] text-[#000] bg-[#fff] rounded-[4px] mr-[10px] max-md:text-[12px]'>{formattedDate.toUpperCase()}</span>}
                                         {
                                             platforms?.length > 0 && platforms.map(platform =>
                                                 <div key={platform.platform.id} className={`platforms__platform platforms__platform_medium platforms__platform_${platform.platform.slug}`}></div>
