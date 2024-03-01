@@ -13,21 +13,6 @@
     justify-content: flex-start;
 }
 
-.platforms {
-    display: -webkit-inline-box;
-    display: -webkit-inline-flex;
-    display: -ms-inline-flexbox;
-    display: inline-flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-}
-
 .platforms_medium .platforms__platform:not(:last-child) {
     margin-right: 6px;
 }
