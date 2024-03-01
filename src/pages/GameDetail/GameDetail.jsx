@@ -51,7 +51,7 @@ const GameDetail = () => {
                         }}>
                         </div>
                         <div className='flex justify-center mt-[32px]'>
-                            <div className='flex max-w-[960px] max-lg:flex-col-reverse'>
+                            <div className='flex w-full max-w-[960px] max-lg:flex-col-reverse'>
                                 <div className='text-left'>
                                     <div className='flex items-center mb-[12px]'>
                                         {game.released !== null && <span className='text-[14px] py-[2px] px-[8px] text-[#000] bg-[#fff] rounded-[4px] mr-[10px] max-md:text-[12px]'>{formattedDate.toUpperCase()}</span>}
@@ -145,7 +145,7 @@ const GameDetail = () => {
                                     </div>
                                 </div>
                                 <div className='max-lg:w-full max-lg:flex max-lg:justify-center max-lg:mb-[32px]'>
-                                    <div className='gallery-screenshots min-w-[384px] w-[384px] ml-[48px] flex flex-wrap content-start gap-[12px] max-lg:w-[50%] max-lg:ml-[0px]'>
+                                    <div className='gallery-screenshots min-w-[384px] w-[384px] ml-[48px] flex flex-wrap content-start gap-[12px] max-sm:min-w-full max-lg:w-[50%] max-lg:ml-[0px]'>
                                         {
                                             platforms?.length > 0 && screenshots.map(screenshot =>
                                                 <img key={screenshot.id} className='rounded-[4px]' src={screenshot.image} alt={game.name} />
