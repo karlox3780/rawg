@@ -49,7 +49,7 @@ const Navbar = ({ filterGames }) => {
                     </svg>
                 </button>
             </header>
-            <div className={`navbar-responsive-menu absolute bg-[#151515] mx-[10px] text-white z-10 transition duration-1500 rounded-[4px] ${showNavbar ? 'max-md:block' : 'max-md:hidden'} hidden`}>
+            <div className={`navbar-responsive-menu absolute bg-[#151515] mx-[10px] text-white z-10 animate-fade animate-duration-[1500ms] rounded-[4px] ${showNavbar && 'max-md:block'} hidden`}>
                 <div className='p-[5px]'>
                     <Link className="text-[16px] font-semibold hover:underline hover:underline-offset-8" href="/rawg-angular/auth">LOG IN</Link>
                 </div>
