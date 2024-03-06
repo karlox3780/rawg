@@ -49,9 +49,13 @@ const Navbar = ({ filterGames }) => {
                     </svg>
                 </button>
             </header>
-            <div className={`absolute bg-[#151515] w-full text-white z-10 transition duration-1500 ${showNavbar ? 'max-md:block' : 'max-md:hidden'} hidden`}>
-                <div><Link className="text-[14px] font-semibold hover:underline hover:underline-offset-8" href="/rawg-angular/auth">LOG IN</Link></div>
-                <div><Link to="https://rawg.io/apidocs" target="_blank" className="text-[14px] font-semibold hover:underline hover:underline-offset-8">API</Link></div>
+            <div className={`navbar-responsive-menu absolute bg-[#151515] mx-[10px] text-white z-10 transition duration-1500 rounded-[4px] ${showNavbar ? 'max-md:block' : 'max-md:hidden'} hidden`}>
+                <div className='p-[5px]'>
+                    <Link className="text-[16px] font-semibold hover:underline hover:underline-offset-8" href="/rawg-angular/auth">LOG IN</Link>
+                </div>
+                <div className='p-[5px]'>
+                    <Link to="https://rawg.io/apidocs" target="_blank" className="text-[16px] font-semibold hover:underline hover:underline-offset-8">API</Link>
+                </div>
             </div>
         </>
     )

@@ -4,3 +4,7 @@
     width: 16px;
     margin: 0 0 -2px;
 }
+
+.navbar-responsive-menu {
+    width: calc(100% - 20px);
+}
