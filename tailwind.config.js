@@ -6,7 +6,5 @@ module.exports = {
     theme: {
         extend: {},
     },
-    plugins: [
-        require('tailwindcss-animated')
-    ],
+    plugins: [],
 }

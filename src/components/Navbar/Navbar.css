@@ -7,4 +7,5 @@
 
 .navbar-responsive-menu {
     width: calc(100% - 20px);
+    transition: all 1s;
 }
