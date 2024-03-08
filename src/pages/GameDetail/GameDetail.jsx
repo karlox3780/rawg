@@ -60,7 +60,7 @@ const GameDetail = () => {
                                                 <div key={platform.platform.id} className={`platforms__platform platforms__platform_medium platforms__platform_${platform.platform.slug}`}></div>
                                             )
                                         }
-                                        {game.playtime > 0 && <div className='text-white'>{`AVERAGE PLAYTIME: ${game.playtime} HOURS`}</div>}
+                                        {game.playtime > 0 && <div className='text-white text-[14px]'>{`AVERAGE PLAYTIME: ${game.playtime} HOURS`}</div>}
                                     </div>
                                     <h1 className='text-white text-[72px] leading-[74px] font-[700] mb-[48px]'>
                                         {game.name}
