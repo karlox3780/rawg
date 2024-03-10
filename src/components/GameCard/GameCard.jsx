@@ -5,7 +5,7 @@ const GameCard = ({ game }) => {
     const genres = game.genres;
     const platforms = game.parent_platforms;
     return (
-        <div className='relative mb-3'>
+        <div className='gamecard relative mb-3'>
             <div className='flex flex-col w-full z-0 group gap-2 rounded-lg shadow-lg lg:hover:scale-110 lg:hover:absolute lg:hover:top-0 lg:hover:left-0 lg:hover:z-10 transition-transform duration-300 bg-[#202020] text-white' >
                 <img className="w-full h-[200px] object-cover max-w-full rounded-md"
                     src={game.background_image}
@@ -31,10 +31,10 @@ const GameCard = ({ game }) => {
                         <hr className="border-[#636363]"></hr>
                         <div className='flex justify-between'>
                             <span className='text-xs font-bold text-[#636363] pr-[5px]'>Genres:</span>
-                            <div className='text-xs text-white flex flex-row flex-wrap gap-2'>
+                            <div className='gamecard-genres text-xs text-white flex flex-row flex-wrap gap-2'>
                                 {
                                     genres?.length > 0 && genres.map(genre =>
-                                        <Link to={`/games/genres/` + genre.slug}><span key={genre.id}>{genre.name}</span></Link>
+                                        <Link key={genre.id} to={`/games/genres/` + genre.slug}><span>{genre.name}</span></Link>
                                     )
                                 }
                             </div>
