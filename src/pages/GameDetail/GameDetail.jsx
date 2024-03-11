@@ -1,6 +1,6 @@
 import './GameDetail.css';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import parse from "html-react-parser";
 import GameSearchService from '../../services/GameSearch.service';
 import moment from 'moment';
@@ -90,7 +90,7 @@ const GameDetail = () => {
                                             <div className='text-[hsla(0,0%,100%,.2)] mb-[8px]'>Genre</div>
                                             {
                                                 genres?.length > 0 && genres.map(genre =>
-                                                    <span key={genre.id} className='genres text-white'>{genre.name}<span>,&nbsp;</span></span>
+                                                    <span key={genre.id} className='genres text-white'><Link className="underline" to={'/games/genres/' + genre.slug}>{genre.name}</Link><span>,&nbsp;</span></span>
                                                 )
                                             }
                                         </div>
@@ -102,7 +102,7 @@ const GameDetail = () => {
                                             <div className='text-[hsla(0,0%,100%,.2)] mb-[8px]'>Developer</div>
                                             {
                                                 game.developers?.length > 0 && game.developers.map(developer =>
-                                                    <span key={developer.id} className='developers text-white'>{developer.name}<span>,&nbsp;</span></span>
+                                                    <span key={developer.id} className='developers text-white'><Link className="underline" to={'/games/developers/' + developer.slug}>{developer.name}</Link><span>,&nbsp;</span></span>
                                                 )
                                             }
                                         </div>
@@ -110,7 +110,7 @@ const GameDetail = () => {
                                             <div className='text-[hsla(0,0%,100%,.2)] mb-[8px]'>Publishers</div>
                                             {
                                                 game.publishers?.length > 0 && game.publishers.map(publisher =>
-                                                    <span key={publisher.id} className='publishers text-white'>{publisher.name}<span>,&nbsp;</span></span>
+                                                    <span key={publisher.id} className='publishers text-white'><Link className="underline" to={'/games/publishers/' + publisher.slug}>{publisher.name}</Link><span>,&nbsp;</span></span>
                                                 )
                                             }
                                         </div>
@@ -119,7 +119,7 @@ const GameDetail = () => {
                                                 <div className='text-[hsla(0,0%,100%,.2)] mb-[8px]'>Tags</div>
                                                 {
                                                     game.tags.map(tag =>
-                                                        <span key={tag.id} className='tags text-white'>{tag.name}<span>,&nbsp;</span></span>
+                                                        <span key={tag.id} className='tags text-white'><Link className="underline" to={'/games/tags/' + tag.slug}>{tag.name}</Link><span>,&nbsp;</span></span>
                                                     )
                                                 }
                                             </div>

@@ -10,8 +10,7 @@ import { useParams } from 'react-router-dom';
 import moment from 'moment';
 
 const HomePage = ({ search, title, subtitle, selectOrder }) => {
-    const { genreParam } = useParams();
-    const { dateParam } = useParams();
+    const { genreParam, dateParam, tagParam, devParam, pubParam } = useParams();
     const [isLoading, setIsLoading] = useState(false);
     const [titleState, setTitleState] = useState(null);
     const [games, setGames] = useState([]);
@@ -58,7 +57,7 @@ const HomePage = ({ search, title, subtitle, selectOrder }) => {
         const fetchData = () => {
             setIsLoading(true);
             GameSearch
-                .getSearchGames(search, order === null ? selectOrder : order, genre, page, dateParam ? dateCalc(dateParam, dateParam === "last-30-days" ? 30 : 7) : '')
+                .getSearchGames(search, order === null ? selectOrder : order, genre, page, dateParam ? dateCalc(dateParam, dateParam === "last-30-days" ? 30 : 7) : '', tagParam, devParam, pubParam)
                 .then((res) => {
                     setGames((prevItems) => [...prevItems, ...res.results]);
                 })
@@ -77,7 +76,7 @@ const HomePage = ({ search, title, subtitle, selectOrder }) => {
         };
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
-    }, [isLoading, search, order, genre, selectOrder, page, dateParam]);
+    }, [isLoading, search, order, genre, selectOrder, page, dateParam, tagParam, devParam, pubParam]);
 
     useEffect(() => {
         let isActive = true;
@@ -105,11 +104,15 @@ const HomePage = ({ search, title, subtitle, selectOrder }) => {
                 default:
                     break;
             }
+        } else if (tagParam || devParam || pubParam) {
+            tagParam && setTitleState(tagParam.replaceAll("-", " "));
+            devParam && setTitleState(devParam.replaceAll("-", " "));
+            pubParam && setTitleState(pubParam.replaceAll("-", " "));
         } else {
             setTitleState(title);
         }
         GameSearch
-            .getSearchGames(search, order === null ? selectOrder : order, genre, 1, dateParam ? dateCalc(dateParam, dateParam === "last-30-days" ? 30 : 7) : '')
+            .getSearchGames(search, order === null ? selectOrder : order, genre, 1, dateParam ? dateCalc(dateParam, dateParam === "last-30-days" ? 30 : 7) : '', tagParam, devParam, pubParam)
             .then((games) => {
                 if (isActive) setGames(games.results);
             })
@@ -134,7 +137,7 @@ const HomePage = ({ search, title, subtitle, selectOrder }) => {
         return () => {
             isActive = false;
         }
-    }, [search, order, genre, selectOrder, title, titleState, genreParam, dateParam]);
+    }, [search, order, genre, selectOrder, title, titleState, genreParam, dateParam, tagParam, devParam, pubParam]);
 
     return (
         <div className='w-full flex flex-col gap-5'>
