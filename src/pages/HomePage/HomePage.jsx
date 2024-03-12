@@ -105,9 +105,7 @@ const HomePage = ({ search, title, subtitle, selectOrder }) => {
                     break;
             }
         } else if (tagParam || devParam || pubParam) {
-            tagParam && setTitleState(tagParam.replaceAll("-", " "));
-            devParam && setTitleState(devParam.replaceAll("-", " "));
-            pubParam && setTitleState(pubParam.replaceAll("-", " "));
+            setTitleState(tagParam ? tagParam.replaceAll("-", " ") : (devParam ? devParam.replaceAll("-", " ") : pubParam.replaceAll("-", " ")));
         } else {
             setTitleState(title);
         }
