@@ -4,7 +4,7 @@ import { useState } from 'react';
 import HomePage from './pages/HomePage/HomePage';
 import Navbar from './components/Navbar/Navbar';
 import DiscoverSidebar from './components/DiscoverSidebar/DiscoverSidebar';
-import GameDetail from './pages/GameDetail/GameDetail';
+import GameDetailPage from './pages/GameDetailPage/GameDetailPage';
 import { GAMES, GAMES_DATES, GAMES_DETAIL, GAMES_DEVELOPERS, GAMES_GENRES, GAMES_PUBLISHERS, GAMES_TAGS, HOME } from './config/router/paths';
 
 function App() {
@@ -27,7 +27,7 @@ function App() {
           <Route path={GAMES_TAGS} element={<HomePage search={search} selectOrder="-released" />} />
           <Route path={GAMES_GENRES} element={<HomePage search={search} selectOrder="-released" />} />
           <Route path={GAMES_DATES} element={<HomePage search={search} selectOrder="-released" />} />
-          <Route path={GAMES_DETAIL} element={<GameDetail />} />
+          <Route path={GAMES_DETAIL} element={<GameDetailPage />} />
         </Routes>
       </main>
     </div>
